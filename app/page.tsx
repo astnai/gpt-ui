@@ -1,113 +1,108 @@
-import Image from "next/image";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Instagram } from "lucide-react";
 
-export default function Home() {
+const teamMembers = [
+  {
+    name: "Tomás Barreiro",
+    nickname: "Barra",
+    description:
+      "Le apasionan los videojuegos y el mundo online. Actualmente edita videos y aspira a convertirse en un destacado youtuber/streamer.",
+    image: "/tomas.png",
+    quote: "A veces menos es más.",
+    instagram: "tomasbarraah",
+  },
+  {
+    name: "Matteo Fiore",
+    nickname: "Baljit",
+    description:
+      "Estudiante de diseño en la UBA. Le encanta jugar videojuegos, tomar mate y socializar; es el más sociable del grupo.",
+    image: "/matteo.png",
+    quote: "Esta es una frase de prueba.",
+    instagram: "matteo_fiore",
+  },
+  {
+    name: "Juan Lehue",
+    nickname: "Juan",
+    description:
+      "Es el más en forma del grupo. Estudia en La Plata y es el más cercano a ser una buena persona; siempre sabe escuchar.",
+    image: "/juan.png",
+    quote: "Esta es una frase de prueba.",
+    instagram: "juan_fitness",
+  },
+  {
+    name: "Agustín Arias",
+    nickname: "Astnai",
+    description:
+      "Ingeniero de software, con una pasión por pensar en grande. Su trabajo duro le lleva a disfrutar de cada aspecto de su vida.",
+    image: "/agustin.png",
+    quote: "Esta es una frase de prueba.",
+    instagram: "agustnarias",
+  },
+];
+
+export default function Component() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div className="flex justify-center items-center min-h-screen p-2">
+      <Card className="w-full max-w-5xl mx-auto overflow-hidden">
+        <div className="relative">
+          <img
+            src="/gptBanner.jpg"
+            alt="GPT Team"
+            className="w-full h-60 object-cover"
+          />
         </div>
-      </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+        <CardHeader className="text-center py-4">
+          <CardTitle className="text-4xl font-black">GPT</CardTitle>
+          <CardDescription className="text-lg">Grupo Para Todo</CardDescription>
+        </CardHeader>
+        <CardContent className="px-4 pb-4">
+          <div className="grid grid-cols-2 gap-4">
+            {teamMembers.map((member, index) => (
+              <Card
+                key={index}
+                className="border shadow-sm relative overflow-hidden"
+              >
+                <a
+                  href={`https://www.instagram.com/${member.instagram}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute top-1 right-1 p-1 bg-white rounded-full text-muted-foreground hover:text-primary transition-colors z-10"
+                  aria-label={`Instagram de ${member.name}`}
+                >
+                  <Instagram size={24} />
+                </a>
+                <CardHeader className="flex flex-row items-center space-x-2 py-2 px-3">
+                  <Avatar className="w-12 h-12">
+                    <AvatarImage src={member.image} alt={member.name} />
+                    <AvatarFallback>{member.name[0]}</AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <CardTitle className="text-lg">{member.name}</CardTitle>
+                    <CardDescription className="text-sm">
+                      &quot;{member.nickname}&quot;
+                    </CardDescription>
+                  </div>
+                </CardHeader>
+                <CardContent className="py-2 px-3">
+                  <p className="text-sm mb-2 leading-snug line-clamp-3">
+                    {member.description}
+                  </p>
+                  <blockquote className="border-l-2 border-primary pl-2 py-1 italic text-muted-foreground rounded-r-md">
+                    <p className="text-xs line-clamp-2">&quot;{member.quote}&quot;</p>
+                  </blockquote>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+    </div>
   );
 }

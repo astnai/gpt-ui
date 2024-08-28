@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Card,
   CardContent,
@@ -77,7 +77,7 @@ export default function Component() {
           />
           <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
             <div className="text-center text-white">
-              <h1 className="text-4xl font-black mb-1">GPT</h1>
+              <h1 className="text-4xl font-black tracking-widest mb-1">GPT</h1>
               <p className="text-lg font-light">Grupo Para Todo</p>
             </div>
           </div>
@@ -102,14 +102,25 @@ function MemberCard({ member }: { member: TeamMember }) {
       layout
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3 }}
+      transition={{ 
+        type: "spring",
+        stiffness: 260,
+        damping: 20
+      }}
     >
       <Card className="h-full flex flex-col justify-between bg-white hover:shadow-md transition-shadow duration-300">
         <CardHeader className="relative pb-0 pt-3 px-3">
-          <Avatar className="w-16 h-16 mx-auto mb-2">
-            <AvatarImage src={member.image} alt={member.name} />
-            <AvatarFallback>{member.name[0]}</AvatarFallback>
-          </Avatar>
+          <motion.div 
+            className="relative w-16 h-16 mx-auto mb-2 group"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+          >
+            <Avatar className="w-full h-full">
+              <AvatarImage src={member.image} alt={member.name} />
+              <AvatarFallback>{member.name[0]}</AvatarFallback>
+            </Avatar>
+            <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 rounded-full transition-opacity duration-300 ease-in-out"></div>
+          </motion.div>
           <CardTitle className="text-lg text-center mb-1">
             {member.name}
           </CardTitle>
@@ -118,44 +129,58 @@ function MemberCard({ member }: { member: TeamMember }) {
           </CardDescription>
         </CardHeader>
         <CardContent className="pt-2 px-3 flex-grow">
-          <p
-            className={`text-xs mb-2 leading-relaxed ${
-              isExpanded ? "" : "line-clamp-3"
-            }`}
+          <motion.div
+            animate={{ height: isExpanded ? "auto" : "3.6em" }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="overflow-hidden"
           >
-            {member.description}
-          </p>
-          <blockquote className="border-l-2 border-primary pl-2 py-1 italic text-muted-foreground">
+            <p className="text-xs mb-4 leading-relaxed">
+              {member.description}
+            </p>
+          </motion.div>
+          <motion.blockquote 
+            className="border-l-2 border-primary pl-2 py-1 mt-4 italic text-muted-foreground"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2, duration: 0.3 }}
+          >
             <p className="text-xs">&quot;{member.quote}&quot;</p>
-          </blockquote>
-          <div className="flex justify-center mt-2 space-x-3">
+          </motion.blockquote>
+          <motion.div 
+            className="flex justify-center mt-4 space-x-3"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.3 }}
+          >
             <a
               href={`https://twitter.com/${member.twitter}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-black transition-colors"
+              className="text-black hover:text-neutral-600 transition-colors"
               aria-label={`Twitter de ${member.name}`}
             >
-              <Twitter size={16} />
+              <Twitter size={20} />
             </a>
             <a
               href={`https://www.instagram.com/${member.instagram}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-black transition-colors"
+              className="text-black hover:text-neutral-600 transition-colors"
               aria-label={`Instagram de ${member.name}`}
             >
-              <Instagram size={16} />
+              <Instagram size={20} />
             </a>
-          </div>
+          </motion.div>
         </CardContent>
-        <button
+        <motion.button
           onClick={() => setIsExpanded(!isExpanded)}
           className="w-full p-1 text-xs text-primary hover:bg-primary-foreground transition-colors flex items-center justify-center"
           aria-label={isExpanded ? "Ver menos" : "Ver más"}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
         >
           {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-        </button>
+        </motion.button>
       </Card>
     </motion.div>
   );
